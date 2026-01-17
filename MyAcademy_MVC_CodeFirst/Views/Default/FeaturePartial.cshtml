@@ -1,0 +1,32 @@
+﻿@* Ui Feature Component *@
+
+@model List<MyAcademy_MVC_CodeFirst.DTOs.FeatureDtos.ResultFeatureDto> 
+
+<div id="feature" class="container-fluid feature bg-light py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">Niteliklerimiz</h4>
+            <h1 class="display-4 mb-4">Sigorta Size Daha İyi Bir Gelecek Sağlar</h1>
+            <p class="mb-0">
+                Müşterilerimize güven veren, ihtiyaçlara özel çözümler sunan ve geleceğinizi güvence altına alan sigorta hizmetleri sağlıyoruz. Uzman kadromuz ve güçlü altyapımızla, bugün ve yarın için yanınızda olmaya devam ediyoruz.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="feature-item p-4 pt-0">
+                        <div class="feature-icon p-4 mb-4">
+                            <i class="@item.Icon"></i>
+                        </div>
+                        <h4 class="mb-4">@item.Title</h4>
+                        <p class="mb-4">
+                            @item.Description
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,177 @@
+﻿@{
+    Layout = null;
+}
+
+@model  MyAcademy_MVC_CodeFirst.DTOs.ContactMessageDtos.CreateContactMessageDto
+
+<!DOCTYPE html>
+<html lang="en">
+
+@Html.Action("HeadPartial", "Default")
+
+<body>
+
+    @Html.Action("SpinnerPartial", "Default")
+
+    @Html.Action("TopbarPartial", "Default")
+
+    @Html.Action("NavbarPartial", "Default")
+
+    @Html.Action("SearchModalPartial", "Default")
+
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Bizimle İletişime Geç</h4>
+        </div>
+    </div>
+
+    <div class="container-fluid contact bg-light py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Bize Ulaşın</h4>
+                <h1 class="display-4 mb-4">Herhangi bir yorumunuz varsa lütfen şimdi başvurun.</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="contact-img d-flex justify-content-center">
+                        <div class="contact-img-inner">
+                            <img src="~/Content/Templates/LifeSure-1.0.0/img/contact-img.png" class="img-fluid w-100" alt="Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.4s">
+                    <div>
+                        <h4 class="text-primary">Mesajınızı Gönderin</h4>
+                        <form method="post">
+                            <div class="row g-3">
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0" id="SenderFullName" name="SenderFullName" placeholder="Adınız Soyadınız">
+                                        <label for="name">Gönderici Ad Soyad</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control border-0" id="SenderEmail" name="SenderEmail" placeholder="Mail Adresiniz">
+                                        <label for="email">Mail Adresi</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0" id="MessageSubject" name="MessageSubject" placeholder="Mesaj Konusu">
+                                        <label for="email">Mail Konusu</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-floating">
+                                        <textarea id="MessageBody" rows="10" cols="10" name="MessageBody" class="form-control border-0" placeholder="Mesaj İçeriği" style="height: 275px;width:300px"></textarea>
+                                        <label for="email">Mail İçeriği</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="contact-add-item">
+                                    <div class="contact-icon text-primary mb-4">
+                                        <i class="fas fa-map-marker-alt fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Adres</h4>
+                                        <p class="mb-0">Ümraniye / İstanbul</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="contact-add-item">
+                                    <div class="contact-icon text-primary mb-4">
+                                        <i class="fas fa-envelope fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Bize Mail Gönder</h4>
+                                        <p class="mb-0">info@example.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="contact-add-item">
+                                    <div class="contact-icon text-primary mb-4">
+                                        <i class="fa fa-phone-alt fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Telephone</h4>
+                                        <p class="mb-0">(+012) 3456 7890</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.8s">
+                                <div class="contact-add-item">
+                                    <div class="contact-icon text-primary mb-4">
+                                        <i class="fab fa-firefox-browser fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Yoursite@ex.com</h4>
+                                        <p class="mb-0">(+012) 3456 7890</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="rounded">
+                        <iframe class="rounded w-100"
+                                style="height: 400px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd"
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Action("FooterPartial", "Default")
+
+    @Html.Action("CopyrightPartial", "Default")
+
+    @Html.Action("BackToTopPartial", "Default")
+
+    @Html.Action("ScriptPartial", "Default")
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+    $(document).ready(function () {
+        var successMessage = @Html.Raw(
+            Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.message)
+        );
+        if (successMessage) {
+            swal({
+                title: "Başarılı",
+                text: successMessage,
+                icon: "success",
+                buttons: {
+                    cancel: {
+                        text: "Tamam",
+                        visible: true,
+                        closeModal: true
+                    }
+                }
+            });
+        }
+    });
+    </script>
+
+</body>
+
+</html>
+

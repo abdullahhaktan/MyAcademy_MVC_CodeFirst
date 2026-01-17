@@ -1,0 +1,64 @@
+﻿@model  List<MyAcademy_MVC_CodeFirst.DTOs.FeatureDtos.ResultFeatureDto>
+
+@{
+    ViewBag.Title = "Öne Çıkan Özellikler";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 p-4 md:p-8 space-y-6 font-display">
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-3xl font-black">Öne Çıkan Özellikler</h2>
+            <p class="text-gray-500">Ana sayfada gösterilen feature alanları</p>
+        </div>
+        <a href="/Admin/Feature/CreateFeature"
+           class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 no-underline">
+            <span class="material-symbols-outlined">add</span>
+            Yeni Özellik
+        </a>
+    </div>
+
+    <div class="bg-white dark:bg-[#151b2b] rounded-xl shadow border overflow-hidden">
+        <table class="w-full">
+            <thead class="bg-gray-50 dark:bg-gray-800/30">
+                <tr>
+                    <th class="p-4 text-xs font-bold uppercase">İkon</th>
+                    <th class="p-4 text-xs font-bold uppercase">Başlık</th>
+                    <th class="p-4 text-xs font-bold uppercase">Açıklama</th>
+                    <th class="p-4 text-xs font-bold uppercase text-right">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50 group transition">
+                        <td class="p-4">
+                            <span class="material-symbols-outlined text-primary">
+                                @item.Icon
+                            </span>
+                        </td>
+                        <td class="p-4 font-semibold">
+                            @item.Title
+                        </td>
+                        <td class="p-4 text-gray-600">
+                            @item.Description
+                        </td>
+                        <td class="p-4 text-right">
+                            <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100">
+                                <a href="/Admin/Feature/UpdateFeature/@item.Id"
+                                   class="p-2 rounded-lg hover:bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined">edit</span>
+                                </a>
+                                <a href="/Admin/Feature/DeleteFeature/@item.Id"
+                                   onclick="return confirm('Silmek istiyor musunuz?')"
+                                   class="p-2 rounded-lg hover:bg-red-50 text-red-600">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

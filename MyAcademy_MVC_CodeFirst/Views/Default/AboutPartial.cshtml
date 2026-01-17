@@ -1,0 +1,82 @@
+﻿@* Ui About Component *@
+
+@model MyAcademy_MVC_CodeFirst.DTOs.AboutDtos.ResultAboutDto
+
+<div id="about" class="container-fluid bg-light about pb-5">
+    <div class="container pb-5">
+        <div class="row g-5">
+            <!-- Sol bölüm: Şirket bilgisi -->
+            <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-item-content bg-white rounded p-5 h-100">
+                    <h4 class="text-primary">Şirketimiz Hakkında</h4>
+                    <h1 class="display-4 mb-4">@Model.Title</h1>
+                    <p>
+                        @Model.Description
+                    </p>
+                    <p>
+                        @Model.Description1
+                    </p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3">@Model.item</i></p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3">@Model.item1</i></p>
+                    <p class="text-dark mb-4"><i class="fa fa-check text-primary me-3">@Model.item2</i></p>
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="#">Daha Fazla Bilgi</a>
+                </div>
+            </div>
+
+            <!-- Sağ bölüm: Görsel ve istatistikler -->
+            <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="bg-white rounded p-5 h-100">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-12">
+                            <div class="rounded bg-light">
+                                <img src="~/Content/Templates/LifeSure-1.0.0/img/about-1.png" class="img-fluid rounded w-100" alt="Şirket Görseli">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">129</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Sigorta Poliçesi</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">99</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Kazandığımız Ödül</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">556</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Uzman Acenteler</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">967</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Takım Üyeleri</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

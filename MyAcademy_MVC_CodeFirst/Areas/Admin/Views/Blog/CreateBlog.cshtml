@@ -1,0 +1,61 @@
+﻿@model  MyAcademy_MVC_CodeFirst.DTOs.BlogDtos.CreateBlogDto
+
+@{
+    ViewBag.Title = "Yeni Blog Ekle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="p-8 max-w-4xl mx-auto font-display">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl border shadow-xl overflow-hidden">
+
+        <div class="p-6 border-b bg-green-50/50">
+            <h3 class="text-xl font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">add_circle</span>
+                Yeni Blog Ekle
+            </h3>
+        </div>
+
+        <div class="p-6">
+            @using (Html.BeginForm("CreateBlog", "Blog", FormMethod.Post))
+            {
+                <div class="space-y-5">
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Kategori</label>
+                        @Html.TextBoxFor(x => x.Subject, new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50" })
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Başlık</label>
+                        @Html.TextBoxFor(x => x.Title, new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50" })
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Görsel URL</label>
+                        @Html.TextBoxFor(x => x.ImageUrl, new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50" })
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Açıklama</label>
+                        @Html.TextAreaFor(x => x.Description, new
+                        {
+                            @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 h-40 resize-none"
+                        })
+                    </div>
+
+                    <div class="flex gap-3 pt-4">
+                        <button class="flex-1 bg-primary text-white font-bold py-3 rounded-xl">
+                            Kaydet
+                        </button>
+                        <a href="/Admin/Blog/Index"
+                           class="px-6 py-3 bg-gray-100 rounded-xl font-bold text-center no-underline">
+                            İptal
+                        </a>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@* Ui Service Component *@
+@model List<MyAcademy_MVC_CodeFirst.DTOs.PolicyDtos.ResultPolicyDto>
+
+<div id="service" class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">Hizmetlerimiz</h4>
+            <h1 class="display-4 mb-4">Sigorta Poliçelerimiz</h1>
+            <p class="mb-0">
+                Size en uygun sigorta poliçelerini sunuyor, güvenli bir gelecek için yanınızda oluyoruz.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="service-item h-100">
+                        <div class="service-img">
+                            <img src="@item.ImageUrl" style="height:200px;width:100px" class="img-fluid rounded-top w-100" alt="@item.InsuranceType">
+                            <div class="service-icon p-3">
+                                <i class="@item.Icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="service-content p-4">
+                            <div class="service-content-inner">
+                                <h4 class="mb-3">@item.InsuranceType</h4>
+
+                                <p class="mb-2 text-muted">
+                                    Poliçe No: <strong>@item.PolicyNumber</strong>
+                                </p>
+
+                                <p class="mb-3">
+                                    @item.Description
+                                </p>
+
+                                <p class="mb-2">
+                                    <strong>Prim:</strong> @item.PremiumAmount ₺
+                                </p>
+
+                                @if (item.IsActive)
+                                {
+                                    <span class="badge bg-success mb-3">Aktif</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger mb-3">Pasif</span>
+                                }
+
+                                <div class="mt-3">
+                                    <button class="btn btn-primary rounded-pill py-2 px-4" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">
+                                        Detaylı Bilgi
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content" style="border-radius: 15px; border: none; overflow: hidden;">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    <i class="@item.Icon me-2"></i> @item.InsuranceType Detayları
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6 class="text-primary border-bottom pb-2">Poliçe Hakkında Geniş Bilgi</h6>
+                                        <p style="line-height: 1.8; color: #555;">
+                                            @item.Description1
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <small class="text-muted d-block">Poliçe Numarası</small>
+                                        <strong>#@item.PolicyNumber</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted d-block">Ödenecek Prim</small>
+                                        <strong class="text-success">@item.PremiumAmount ₺</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="background-color: #f8f9fa;">
+                                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Kapat</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

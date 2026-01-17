@@ -1,0 +1,70 @@
+﻿@model List<MyAcademy_MVC_CodeFirst.DTOs.TestimonialDtos.ResultTestimonialDto>
+
+@{
+    ViewBag.Title = "Müşteri Yorumları";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 p-4 md:p-8 space-y-6 font-display">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h2 class="text-3xl font-black text-gray-800 dark:text-white">Müşteri Yorumları</h2>
+            <p class="text-gray-500">Kullanıcılardan gelen geri bildirimleri yönetin</p>
+        </div>
+        <a href="/Admin/Testimonial/CreateTestimonial"
+           class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-primary/20 no-underline">
+            <span class="material-symbols-outlined">add_comment</span>
+            Yeni Yorum Ekle
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        @foreach (var item in Model)
+        {
+            <div class="bg-white dark:bg-[#151b2b] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex flex-col overflow-hidden group hover:border-primary/30 transition-all">
+
+                <div class="p-6 flex-1">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <img src="@item.ImageUrl"
+                                 alt="@item.FullName"
+                                 class="w-14 h-14 rounded-full object-cover ring-2 ring-gray-50 dark:ring-gray-700" />
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white leading-tight">@item.FullName</h4>
+                                <p class="text-xs text-primary font-medium">@item.Job</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-0.5 text-yellow-400">
+                            @for (int i = 0; i < item.StarCount; i++)
+                            {
+                                <span class="material-symbols-outlined text-[18px] fill-current">star</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute -top-2 -left-2 text-gray-100 dark:text-gray-800 text-4xl -z-10 select-none">format_quote</span>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed italic">
+                            "@item.Description"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50/50 dark:bg-gray-800/40 px-6 py-4 flex items-center justify-end gap-3 border-t border-gray-100 dark:border-gray-800">
+                    <a href="/Admin/Testimonial/UpdateTestimonial/@item.Id"
+                       class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-semibold no-underline">
+                        <span class="material-symbols-outlined text-lg">edit</span>
+                        Düzenle
+                    </a>
+                    <div class="w-px h-4 bg-gray-200 dark:bg-gray-700"></div>
+                    <a href="/Admin/Testimonial/DeleteTestimonial/@item.Id"
+                       onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?')"
+                       class="text-gray-500 hover:text-red-500 transition-colors flex items-center gap-1 text-sm font-semibold no-underline">
+                        <span class="material-symbols-outlined text-lg">delete</span>
+                        Sil
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

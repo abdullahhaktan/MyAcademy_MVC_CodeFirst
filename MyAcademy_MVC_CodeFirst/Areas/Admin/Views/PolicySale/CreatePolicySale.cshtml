@@ -1,0 +1,74 @@
+﻿@model  MyAcademy_MVC_CodeFirst.DTOs.PolicySaleDtos.CreatePolicySaleDto
+
+@{
+    ViewBag.Title = "Yeni Poliçe Satışı";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="p-8 max-w-3xl mx-auto font-display">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl shadow-xl border">
+        <div class="p-6 border-b bg-green-50">
+            <h3 class="text-xl font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">paid</span>
+                Yeni Poliçe Satışı
+            </h3>
+        </div>
+
+        <div class="p-6">
+            @using (Html.BeginForm("CreatePolicySale", "PolicySale", FormMethod.Post))
+            {
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Poliçe</label>
+                        @Html.DropDownListFor(
+                            policy => policy.PolicyId,
+                            (List<SelectListItem>)ViewBag.policies,
+                            "Poliçe Seçiniz",
+                            new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 cursor-pointer" }
+                        )
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Müşteri</label>
+                        @Html.DropDownListFor(
+                            customer => customer.CustomerId,
+                            (List<SelectListItem>)ViewBag.customers,
+                            "Müşteri Seçiniz",
+                            new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 cursor-pointer" }
+                        )
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1.5">Başlangıç</label>
+                            @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg outline-none", type = "date" })
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1.5">Bitiş</label>
+                            @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg outline-none", type = "date" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Satış Tutarı (₺)</label>
+                        @Html.TextBoxFor(x => x.Amount, new
+                        {
+                            @class = "w-full px-4 py-2 rounded-lg border bg-gray-50",
+                            type = "text"
+                        })
+                    </div>
+                </div>
+
+                <div class="flex gap-3 pt-6">
+                    <button class="flex-1 bg-primary text-white py-3 rounded-xl font-bold">
+                        Kaydet
+                    </button>
+                    <a href="/Admin/PolicySale/Index"
+                       class="px-6 py-3 bg-gray-100 rounded-xl font-bold no-underline">
+                        İptal
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

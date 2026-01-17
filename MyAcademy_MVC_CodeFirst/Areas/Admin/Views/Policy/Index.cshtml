@@ -1,0 +1,97 @@
+﻿@model List<MyAcademy_MVC_CodeFirst.DTOs.PolicyDtos.ResultPolicyDto>
+
+@{
+    ViewBag.Title = "Poliçeler";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 p-4 md:p-8 space-y-6 font-display">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-3xl font-black">Poliçeler</h2>
+            <p class="text-gray-500">Sistemde tanımlı tüm sigorta poliçeleri</p>
+        </div>
+
+        <a href="/Admin/Policy/CreatePolicy"
+           class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 no-underline">
+            <span class="material-symbols-outlined">add</span>
+            Yeni Poliçe
+        </a>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-white dark:bg-[#151b2b] rounded-xl shadow border overflow-hidden">
+        <table class="w-full border-collapse">
+
+            <!-- THEAD -->
+            <thead class="bg-gray-50 dark:bg-gray-800/30">
+                <tr>
+                    <th class="p-4 pl-8 text-xs font-bold uppercase text-left">Poliçe No</th>
+                    <th class="p-4 pl-8 text-xs font-bold uppercase text-left">Sigorta Türü</th>
+                    <th class="p-4 text-xs font-bold uppercase text-right">Prim</th>
+                    <th class="p-4 pl-8 text-xs font-bold uppercase text-left">Durum</th>
+                    <th class="p-4 text-xs font-bold uppercase text-right">İşlemler</th>
+                </tr>
+            </thead>
+
+            <!-- TBODY -->
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/40 group transition">
+
+                        <td class="p-4 pl-8 font-semibold text-primary whitespace-nowrap">
+                            @item.PolicyNumber
+                        </td>
+
+                        <td class="p-4 pl-8">
+                            @item.InsuranceType
+                        </td>
+
+                        <td class="p-4 text-right font-mono font-bold">
+                            @item.PremiumAmount.ToString("C2")
+                        </td>
+
+                        <td class="p-4 pl-8">
+                            @if (item.IsActive)
+                            {
+                                <span class="inline-flex items-center px-3 py-1 text-xs font-bold rounded-full bg-green-100 text-green-700">
+                                    Aktif
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="inline-flex items-center px-3 py-1 text-xs font-bold rounded-full bg-red-100 text-red-700">
+                                    Pasif
+                                </span>
+                            }
+                        </td>
+
+                        <td class="p-4 text-right">
+                            <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+
+                                <a href="/Admin/Policy/UpdatePolicy/@item.Id"
+                                   class="p-2 rounded-lg hover:bg-primary/10 text-primary"
+                                   title="Düzenle">
+                                    <span class="material-symbols-outlined">edit</span>
+                                </a>
+
+                                <a href="/Admin/Policy/DeletePolicy/@item.Id"
+                                   onclick="return confirm('Bu poliçeyi silmek istiyor musunuz?')"
+                                   class="p-2 rounded-lg hover:bg-red-50 text-red-600"
+                                   title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </a>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

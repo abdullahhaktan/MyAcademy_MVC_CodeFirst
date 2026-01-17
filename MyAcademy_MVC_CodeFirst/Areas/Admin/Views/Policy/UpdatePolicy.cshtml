@@ -1,0 +1,118 @@
+﻿@model MyAcademy_MVC_CodeFirst.DTOs.PolicyDtos.GetPolicyByIdDto
+
+@{
+    ViewBag.Title = "Poliçe Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="p-8 max-w-4xl mx-auto font-display">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden">
+
+        <!-- Header -->
+        <div class="p-6 border-b border-gray-200 dark:border-gray-800 bg-amber-50/60 dark:bg-amber-900/10 flex justify-between items-center">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-amber-600">edit</span>
+                Poliçe Güncelle
+            </h3>
+
+            <button type="button" id="GeminiAi"
+                    class="flex items-center gap-2 text-xs font-bold bg-indigo-600 text-white px-3 py-1.5 rounded-full hover:bg-indigo-700 transition-all">
+                <span class="material-symbols-outlined text-sm">auto_awesome</span>
+                Gemini ile Güncelle
+            </button>
+        </div>
+
+        <div class="p-6">
+            @using (Html.BeginForm("UpdatePolicy", "Policy", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.Id)
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Left -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-1.5">Poliçe Numarası</label>
+                            @Html.TextBoxFor(x => x.PolicyNumber,
+                                new { @class = "w-full px-4 py-2 bg-gray-50 border rounded-lg" })
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-1.5">Sigorta Türü</label>
+                            @Html.TextBoxFor(x => x.InsuranceType,
+                                new { @class = "w-full px-4 py-2 bg-gray-50 border rounded-lg" })
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-1.5">Prim Tutarı (₺)</label>
+                            @Html.TextBoxFor(x => x.PremiumAmount,
+                                new { @class = "w-full px-4 py-2 bg-gray-50 border rounded-lg", type = "text" })
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-1.5">Açıklama / Teminat Detayları</label>
+                            @Html.TextAreaFor(x => x.Description, new { @class = "w-full px-4 py-2 bg-gray-50 border rounded-lg h-32 resize-none" })
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1.5">Açıklama / Teminat Detayları - 2 (Çok Detaylı Açıklama)</label>
+                            @Html.TextAreaFor(x => x.Description1, new { @class = "w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg outline-none focus:border-primary transition-all h-32 resize-none", placeholder = "Gemini tarafından oluşturulacak detaylı metin..." })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active -->
+                <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl mt-6">
+                    @Html.CheckBoxFor(x => x.IsActive, new { @class = "w-5 h-5" })
+                    <label class="text-sm font-semibold italic">
+                        Poliçe aktif
+                    </label>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex gap-3 pt-6">
+                    <button type="submit"
+                            class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-xl">
+                        Güncelle
+                    </button>
+
+                    <a href="/Admin/Policy/Index"
+                       class="px-6 py-3 bg-gray-100 font-bold rounded-xl no-underline text-center">
+                        Geri Dön
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#GeminiAi').on("click", function () {
+
+                var selectedInsuranceType = $("#InsuranceType").val();
+
+                var selectedPremiumAmount = $("#PremiumAmount").val();
+
+                $.ajax({
+                    url: '/Admin/Policy/GetAiSuggestion',
+                    type: 'POST',
+                    data: {
+                        selectedInsuranceType: selectedInsuranceType,
+                        selectedPremiumAmount: selectedPremiumAmount
+                    },
+                    success: function (suggestion) {
+
+                        $("#Description1").val(suggestion);
+
+                        $("#Description1").fadeOut(100).fadeIn(100);
+
+                    }
+                })
+            })
+        })
+    </script>
+}

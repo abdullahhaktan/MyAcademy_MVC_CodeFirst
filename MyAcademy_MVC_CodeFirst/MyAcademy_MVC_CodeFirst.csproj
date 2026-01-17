@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.ML.Mkl.Redist.5.0.0\build\netstandard2.0\Microsoft.ML.Mkl.Redist.props" Condition="Exists('..\packages\Microsoft.ML.Mkl.Redist.5.0.0\build\netstandard2.0\Microsoft.ML.Mkl.Redist.props')" />
+  <Import Project="..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.props" Condition="Exists('..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.props')" />
+  <Import Project="..\packages\Microsoft.ML.CpuMath.5.0.0\build\netstandard2.0\Microsoft.ML.CpuMath.props" Condition="Exists('..\packages\Microsoft.ML.CpuMath.5.0.0\build\netstandard2.0\Microsoft.ML.CpuMath.props')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0472BED4-43C4-414C-9311-4E00C9D40872}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyAcademy_MVC_CodeFirst</RootNamespace>
+    <AssemblyName>MyAcademy_MVC_CodeFirst</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44325</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.14.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.14.1\lib\net48\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.4\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Numerics, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Numerics.9.0.4\lib\net462\Microsoft.Bcl.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ML.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.5.0.0\lib\netstandard2.0\Microsoft.ML.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.CpuMath, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.CpuMath.5.0.0\lib\netstandard2.0\Microsoft.ML.CpuMath.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.5.0.0\lib\netstandard2.0\Microsoft.ML.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.DataView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.DataView.5.0.0\lib\netstandard2.0\Microsoft.ML.DataView.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.KMeansClustering, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.5.0.0\lib\netstandard2.0\Microsoft.ML.KMeansClustering.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.PCA, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.5.0.0\lib\netstandard2.0\Microsoft.ML.PCA.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.StandardTrainers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.5.0.0\lib\netstandard2.0\Microsoft.ML.StandardTrainers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.TimeSeries, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.TimeSeries.5.0.0\lib\netstandard2.0\Microsoft.ML.TimeSeries.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.Transforms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ML.5.0.0\lib\netstandard2.0\Microsoft.ML.Transforms.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.14.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.14.0\lib\net48\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.CodeDom.9.0.4\lib\net462\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=9.0.0.4, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.9.0.4\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.1\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Tensors, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Tensors.9.0.4\lib\net462\System.Numerics.Tensors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=9.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.9.0.4\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminLayoutController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactMessageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FaqController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeatureController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PolicyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PolicySaleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestimonialController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Data\Context\AppDbContext.cs" />
+    <Compile Include="Data\Entities\About.cs" />
+    <Compile Include="Data\Entities\AdminLog.cs" />
+    <Compile Include="Data\Entities\Blog.cs" />
+    <Compile Include="Data\Entities\ContactMessage.cs" />
+    <Compile Include="Data\Entities\Customer.cs" />
+    <Compile Include="Data\Entities\Faq.cs" />
+    <Compile Include="Data\Entities\Feature.cs" />
+    <Compile Include="Data\Entities\CustomerLog.cs" />
+    <Compile Include="Data\Entities\Policy.cs" />
+    <Compile Include="Data\Entities\PolicySale.cs" />
+    <Compile Include="Data\Entities\Team.cs" />
+    <Compile Include="Data\Entities\Testimonial.cs" />
+    <Compile Include="DTOs\AboutDtos\CreateAboutDto.cs" />
+    <Compile Include="DTOs\AboutDtos\GetAboutByIdDto.cs" />
+    <Compile Include="DTOs\AboutDtos\ResultAboutDto.cs" />
+    <Compile Include="DTOs\AboutDtos\UpdateAboutDto.cs" />
+    <Compile Include="DTOs\BlogDtos\CreateBlogDto.cs" />
+    <Compile Include="DTOs\BlogDtos\GetBlogByIdDto.cs" />
+    <Compile Include="DTOs\BlogDtos\ResultBlogDto.cs" />
+    <Compile Include="DTOs\BlogDtos\UpdateBlogDto.cs" />
+    <Compile Include="DTOs\ContactMessageDtos\CreateContactMessageDto.cs" />
+    <Compile Include="DTOs\ContactMessageDtos\GetContactMessageByIdDto.cs" />
+    <Compile Include="DTOs\ContactMessageDtos\ResultContactMessageDto.cs" />
+    <Compile Include="DTOs\CustomerDtos\CreateCustomerDto.cs" />
+    <Compile Include="DTOs\CustomerDtos\GetCustomerByIdDto.cs" />
+    <Compile Include="DTOs\CustomerDtos\ResultCustomerDto.cs" />
+    <Compile Include="DTOs\CustomerDtos\UpdateCustomerDto.cs" />
+    <Compile Include="DTOs\FaqDtos\CreateFaqDto.cs" />
+    <Compile Include="DTOs\FaqDtos\GetFaqByIdDto.cs" />
+    <Compile Include="DTOs\FaqDtos\ResultFaqDto.cs" />
+    <Compile Include="DTOs\FaqDtos\UpdateFaqDto.cs" />
+    <Compile Include="DTOs\FeatureDtos\CreateFeatureDto.cs" />
+    <Compile Include="DTOs\FeatureDtos\GetFeatureByIdDto.cs" />
+    <Compile Include="DTOs\FeatureDtos\ResultFeatureDto.cs" />
+    <Compile Include="DTOs\FeatureDtos\UpdateFeatureDto.cs" />
+    <Compile Include="DTOs\GeminiDtos\GeminiContentDto.cs" />
+    <Compile Include="DTOs\GeminiDtos\GeminiRequestDto.cs" />
+    <Compile Include="DTOs\GeminiDtos\GeminiResponseDto.cs" />
+    <Compile Include="DTOs\LoginDto.cs" />
+    <Compile Include="DTOs\PolicyDtos\CreatePolicyDto.cs" />
+    <Compile Include="DTOs\PolicyDtos\GetPolicyByIdDto.cs" />
+    <Compile Include="DTOs\PolicyDtos\ResultPolicyDto.cs" />
+    <Compile Include="DTOs\PolicyDtos\UpdatePolicyDto.cs" />
+    <Compile Include="DTOs\PolicySaleDtos\CreatePolicySaleDto.cs" />
+    <Compile Include="DTOs\PolicySaleDtos\GetPolicySaleByIdDto.cs" />
+    <Compile Include="DTOs\PolicySaleDtos\ResultPolicySaleDto.cs" />
+    <Compile Include="DTOs\PolicySaleDtos\UpdatePolicySaleDto.cs" />
+    <Compile Include="DTOs\TeamDtos\CreateTeamDto.cs" />
+    <Compile Include="DTOs\TeamDtos\GetTeamByIdDto.cs" />
+    <Compile Include="DTOs\TeamDtos\ResultTeamDto.cs" />
+    <Compile Include="DTOs\TeamDtos\UpdateTeamDto.cs" />
+    <Compile Include="DTOs\TestimonialDtos\CreateTestimonialDto.cs" />
+    <Compile Include="DTOs\TestimonialDtos\GetTestimonialByIdDto.cs" />
+    <Compile Include="DTOs\TestimonialDtos\ResultTestimonialDto.cs" />
+    <Compile Include="DTOs\TestimonialDtos\UpdateTestimonialDto.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mappings\AboutMappings.cs" />
+    <Compile Include="Mappings\BlogMappings.cs" />
+    <Compile Include="Mappings\ContactMessageMappings.cs" />
+    <Compile Include="Mappings\CustomerMappings.cs" />
+    <Compile Include="Mappings\FaqMappings.cs" />
+    <Compile Include="Mappings\FeatureMappings.cs" />
+    <Compile Include="Mappings\PolicyMappings.cs" />
+    <Compile Include="Mappings\PolicySaleMappings.cs" />
+    <Compile Include="Mappings\TeamMappings.cs" />
+    <Compile Include="Mappings\TestimonialMappings.cs" />
+    <Compile Include="Migrations\202601050845237_migInitial.cs" />
+    <Compile Include="Migrations\202601050845237_migInitial.Designer.cs">
+      <DependentUpon>202601050845237_migInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601050847356_migPolicyNavigationTypeChanged.cs" />
+    <Compile Include="Migrations\202601050847356_migPolicyNavigationTypeChanged.Designer.cs">
+      <DependentUpon>202601050847356_migPolicyNavigationTypeChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601080713568_relatedColumnsAddedToPolicy.cs" />
+    <Compile Include="Migrations\202601080713568_relatedColumnsAddedToPolicy.Designer.cs">
+      <DependentUpon>202601080713568_relatedColumnsAddedToPolicy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601090658448_migCategoryAndProductTableRemoved.cs" />
+    <Compile Include="Migrations\202601090658448_migCategoryAndProductTableRemoved.Designer.cs">
+      <DependentUpon>202601090658448_migCategoryAndProductTableRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601091244599_migLastTablesAdded.cs" />
+    <Compile Include="Migrations\202601091244599_migLastTablesAdded.Designer.cs">
+      <DependentUpon>202601091244599_migLastTablesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601100914245_migIconColumnAddedToTable.cs" />
+    <Compile Include="Migrations\202601100914245_migIconColumnAddedToTable.Designer.cs">
+      <DependentUpon>202601100914245_migIconColumnAddedToTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601101155211_migTestimonialTableAdded.cs" />
+    <Compile Include="Migrations\202601101155211_migTestimonialTableAdded.Designer.cs">
+      <DependentUpon>202601101155211_migTestimonialTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601101902584_migBlogTableUpdated.cs" />
+    <Compile Include="Migrations\202601101902584_migBlogTableUpdated.Designer.cs">
+      <DependentUpon>202601101902584_migBlogTableUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601110931403_migUpdateTestimonial.cs" />
+    <Compile Include="Migrations\202601110931403_migUpdateTestimonial.Designer.cs">
+      <DependentUpon>202601110931403_migUpdateTestimonial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601110945168_migUpdateTestimonial1.cs" />
+    <Compile Include="Migrations\202601110945168_migUpdateTestimonial1.Designer.cs">
+      <DependentUpon>202601110945168_migUpdateTestimonial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601111339236_migUpdatePolicy.cs" />
+    <Compile Include="Migrations\202601111339236_migUpdatePolicy.Designer.cs">
+      <DependentUpon>202601111339236_migUpdatePolicy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601111403403_migPolicyTableUpdated.cs" />
+    <Compile Include="Migrations\202601111403403_migPolicyTableUpdated.Designer.cs">
+      <DependentUpon>202601111403403_migPolicyTableUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601120710337_migInsurancePackageDeleted.cs" />
+    <Compile Include="Migrations\202601120710337_migInsurancePackageDeleted.Designer.cs">
+      <DependentUpon>202601120710337_migInsurancePackageDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601121334126_migContactMessageTableUpdated.cs" />
+    <Compile Include="Migrations\202601121334126_migContactMessageTableUpdated.Designer.cs">
+      <DependentUpon>202601121334126_migContactMessageTableUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601130536265_migIDK.cs" />
+    <Compile Include="Migrations\202601130536265_migIDK.Designer.cs">
+      <DependentUpon>202601130536265_migIDK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601140714549_migUpdateDatabase.cs" />
+    <Compile Include="Migrations\202601140714549_migUpdateDatabase.Designer.cs">
+      <DependentUpon>202601140714549_migUpdateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601140741247_migCustomerLogTableAdded.cs" />
+    <Compile Include="Migrations\202601140741247_migCustomerLogTableAdded.Designer.cs">
+      <DependentUpon>202601140741247_migCustomerLogTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601150637451_migPolicySaleTableUpdated.cs" />
+    <Compile Include="Migrations\202601150637451_migPolicySaleTableUpdated.Designer.cs">
+      <DependentUpon>202601150637451_migPolicySaleTableUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601150725519_SyncPolicySaleModel.cs" />
+    <Compile Include="Migrations\202601150725519_SyncPolicySaleModel.Designer.cs">
+      <DependentUpon>202601150725519_SyncPolicySaleModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601151049038_migPolicyAndPolicySaleTablesUpdated.cs" />
+    <Compile Include="Migrations\202601151049038_migPolicyAndPolicySaleTablesUpdated.Designer.cs">
+      <DependentUpon>202601151049038_migPolicyAndPolicySaleTablesUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601151114396_CustomerTableUpdated.cs" />
+    <Compile Include="Migrations\202601151114396_CustomerTableUpdated.Designer.cs">
+      <DependentUpon>202601151114396_CustomerTableUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601171228331_ServiceTableDeleted.cs" />
+    <Compile Include="Migrations\202601171228331_ServiceTableDeleted.Designer.cs">
+      <DependentUpon>202601171228331_ServiceTableDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601171246056_ContactMessageTableUpdated.cs" />
+    <Compile Include="Migrations\202601171246056_ContactMessageTableUpdated.Designer.cs">
+      <DependentUpon>202601171246056_ContactMessageTableUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\PolicySaleForecastResult.cs" />
+    <Compile Include="Models\PolicySaleTimeSeriesData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CustomerLogService.cs" />
+    <Compile Include="Services\HuggingFaceMailCategoryService.cs" />
+    <Compile Include="Services\AdminLogService.cs" />
+    <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\MlNetService.cs" />
+    <Compile Include="Services\OpenAiService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\404.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\about.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\blog.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\contact.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\css\bootstrap.min.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\css\style.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\FAQ.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\feature.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\about-1.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\bg-breadcrumb.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\BlogImages\blog-1.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\BlogImages\blog-2.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\BlogImages\blog-3.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\BlogImages\blog-4.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\contact-img.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\instagram-footer-1.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\instagram-footer-2.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\instagram-footer-3.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\instagram-footer-4.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\instagram-footer-5.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\img\instagram-footer-6.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\index.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\js\main.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\animate\animate.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\animate\animate.min.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\counterup\counterup.min.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\easing\easing.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\easing\easing.min.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\lightbox\css\lightbox.min.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\lightbox\images\close.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\lightbox\images\loading.gif" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\lightbox\images\next.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\lightbox\images\prev.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\lightbox\js\lightbox.min.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\ajax-loader.gif" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\assets\owl.video.play.png" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\owl.carousel.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\owl.carousel.min.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\waypoints\waypoints.min.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\wow\wow.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\wow\wow.min.js" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\LICENSE.txt" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\life-insurance-website-template.jpg" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\READ-ME.txt" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\service.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\team.html" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\testimonial.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\owlcarousel\LICENSE" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\lib\waypoints\links.php" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\bootstrap-utilities.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\bootstrap.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_floating-labels.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_form-check.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_form-control.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_form-range.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_form-select.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_form-text.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_input-group.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_labels.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\forms\_validation.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_clearfix.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_colored-links.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_position.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_ratio.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_stretched-link.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_text-truncation.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\helpers\_visually-hidden.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_color-scheme.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_container.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_deprecate.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_table-variants.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_utilities.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\mixins\_visually-hidden.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\utilities\_api.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\vendor\_rfs.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_accordion.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_alert.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_badge.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_button-group.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_buttons.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_card.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_carousel.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_close.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_containers.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_dropdown.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_forms.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_functions.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_grid.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_helpers.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_images.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_list-group.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_mixins.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_modal.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_nav.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_navbar.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_offcanvas.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_pagination.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_popover.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_progress.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_reboot.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_root.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_spinners.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_tables.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_toasts.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_tooltip.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_transitions.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_type.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_utilities.scss" />
+    <Content Include="Content\Templates\LifeSure-1.0.0\scss\bootstrap\scss\_variables.scss" />
+    <Content Include="Areas\Admin\Views\AdminLayout\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Policy\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Policy\CreatePolicy.cshtml" />
+    <Content Include="Areas\Admin\Views\Policy\UpdatePolicy.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CreateCustomer.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\UpdateCustomer.cshtml" />
+    <Content Include="Areas\Admin\Views\PolicySale\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PolicySale\CreatePolicySale.cshtml" />
+    <Content Include="Areas\Admin\Views\PolicySale\UpdatePolicySale.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactMessage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Feature\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Feature\CreateFeature.cshtml" />
+    <Content Include="Areas\Admin\Views\Feature\UpdateFeature.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\CreateTeam.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\UpdateTeam.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\CreateTestimonial.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\UpdateTestimonial.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Faq\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Faq\CreateFaq.cshtml" />
+    <Content Include="Areas\Admin\Views\Faq\UpdateFaq.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\CreateBlog.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\UpdateBlog.cshtml" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Shared\Components\_UiLayoutHeadComponent.cshtml" />
+    <Content Include="Views\Default\HeadPartial.cshtml" />
+    <Content Include="Views\Default\SpinnerPartial.cshtml" />
+    <Content Include="Views\Default\TopbarPartial.cshtml" />
+    <Content Include="Views\Default\NavbarPartial.cshtml" />
+    <Content Include="Views\Default\SearchModalPartial.cshtml" />
+    <Content Include="Views\Default\CarouselPartial.cshtml" />
+    <Content Include="Views\Default\FeaturePartial.cshtml" />
+    <Content Include="Views\Default\AboutPartial.cshtml" />
+    <Content Include="Views\Default\ServicePartial.cshtml" />
+    <Content Include="Views\Default\FaqPartial.cshtml" />
+    <Content Include="Views\Default\BlogPartial.cshtml" />
+    <Content Include="Views\Default\TeamPartial.cshtml" />
+    <Content Include="Views\Default\TestimonialPartial.cshtml" />
+    <Content Include="Views\Default\FooterPartial.cshtml" />
+    <Content Include="Views\Default\CopyrightPartial.cshtml" />
+    <Content Include="Views\Default\BackToTopPartial.cshtml" />
+    <Content Include="Views\Default\ScriptPartial.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202601050845237_migInitial.resx">
+      <DependentUpon>202601050845237_migInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601050847356_migPolicyNavigationTypeChanged.resx">
+      <DependentUpon>202601050847356_migPolicyNavigationTypeChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601080713568_relatedColumnsAddedToPolicy.resx">
+      <DependentUpon>202601080713568_relatedColumnsAddedToPolicy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601090658448_migCategoryAndProductTableRemoved.resx">
+      <DependentUpon>202601090658448_migCategoryAndProductTableRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601091244599_migLastTablesAdded.resx">
+      <DependentUpon>202601091244599_migLastTablesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601100914245_migIconColumnAddedToTable.resx">
+      <DependentUpon>202601100914245_migIconColumnAddedToTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601101155211_migTestimonialTableAdded.resx">
+      <DependentUpon>202601101155211_migTestimonialTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601101902584_migBlogTableUpdated.resx">
+      <DependentUpon>202601101902584_migBlogTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601110931403_migUpdateTestimonial.resx">
+      <DependentUpon>202601110931403_migUpdateTestimonial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601110945168_migUpdateTestimonial1.resx">
+      <DependentUpon>202601110945168_migUpdateTestimonial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601111339236_migUpdatePolicy.resx">
+      <DependentUpon>202601111339236_migUpdatePolicy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601111403403_migPolicyTableUpdated.resx">
+      <DependentUpon>202601111403403_migPolicyTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601120710337_migInsurancePackageDeleted.resx">
+      <DependentUpon>202601120710337_migInsurancePackageDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601121334126_migContactMessageTableUpdated.resx">
+      <DependentUpon>202601121334126_migContactMessageTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601130536265_migIDK.resx">
+      <DependentUpon>202601130536265_migIDK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601140714549_migUpdateDatabase.resx">
+      <DependentUpon>202601140714549_migUpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601140741247_migCustomerLogTableAdded.resx">
+      <DependentUpon>202601140741247_migCustomerLogTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601150637451_migPolicySaleTableUpdated.resx">
+      <DependentUpon>202601150637451_migPolicySaleTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601150725519_SyncPolicySaleModel.resx">
+      <DependentUpon>202601150725519_SyncPolicySaleModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601151049038_migPolicyAndPolicySaleTablesUpdated.resx">
+      <DependentUpon>202601151049038_migPolicyAndPolicySaleTablesUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601151114396_CustomerTableUpdated.resx">
+      <DependentUpon>202601151114396_CustomerTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601171228331_ServiceTableDeleted.resx">
+      <DependentUpon>202601171228331_ServiceTableDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601171246056_ContactMessageTableUpdated.resx">
+      <DependentUpon>202601171246056_ContactMessageTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59082</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44325/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ML.CpuMath.5.0.0\build\netstandard2.0\Microsoft.ML.CpuMath.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.CpuMath.5.0.0\build\netstandard2.0\Microsoft.ML.CpuMath.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ML.Mkl.Redist.5.0.0\build\netstandard2.0\Microsoft.ML.Mkl.Redist.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.Mkl.Redist.5.0.0\build\netstandard2.0\Microsoft.ML.Mkl.Redist.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.targets" Condition="Exists('..\packages\Microsoft.ML.5.0.0\build\netstandard2.0\Microsoft.ML.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,34 @@
+﻿@* Ui Script Component *@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="/Content/Templates/LifeSure-1.0.0/lib/wow/wow.min.js"></script>
+<script src="/Content/Templates/LifeSure-1.0.0/lib/easing/easing.min.js"></script>
+<script src="/Content/Templates/LifeSure-1.0.0/lib/waypoints/waypoints.min.js"></script>
+<script src="/Content/Templates/LifeSure-1.0.0/lib/counterup/counterup.min.js"></script>
+<script src="/Content/Templates/LifeSure-1.0.0/lib/lightbox/js/lightbox.min.js"></script>
+<script src="/Content/Templates/LifeSure-1.0.0/lib/owlcarousel/owl.carousel.min.js"></script>
+
+
+
+<!-- Template Javascript -->
+<script src="/Content/Templates/LifeSure-1.0.0/js/main.js"></script>
+
+<script>
+    var originalTitle = document.title;
+    var interval;
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            interval = setInterval(function () {
+                document.title = document.title === "Hey beni unutma !! 😢"
+                    ? "👋 Buradayım!"
+                    : "Hey beni unutma !! 😢";
+            }, 1000);
+        } else {
+            clearInterval(interval);
+            document.title = originalTitle;
+        }
+    });
+</script>

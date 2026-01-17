@@ -1,0 +1,51 @@
+﻿@model  MyAcademy_MVC_CodeFirst.DTOs.CustomerDtos.GetCustomerByIdDto
+
+@{
+    ViewBag.Title = "Müşteri Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="p-8 max-w-3xl mx-auto font-display">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800">
+        <div class="p-6 border-b bg-amber-50 dark:bg-amber-900/10">
+            <h3 class="text-xl font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-amber-600">edit</span>
+                Müşteri Güncelle
+            </h3>
+        </div>
+
+        <div class="p-6">
+            @using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.Id)
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Ad Soyad</label>
+                        @Html.TextBoxFor(x => x.FullName, new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" })
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">E-Mail</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" })
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Şehir</label>
+                        @Html.TextBoxFor(x => x.City, new { @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" })
+                    </div>
+                </div>
+
+                <div class="flex gap-3 pt-6">
+                    <button class="flex-1 bg-amber-500 text-white py-3 rounded-xl font-bold">
+                        Güncelle
+                    </button>
+                    <a href="/Admin/Customer/Index"
+                       class="px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl font-bold no-underline">
+                        Geri Dön
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

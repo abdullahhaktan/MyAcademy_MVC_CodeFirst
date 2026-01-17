@@ -1,0 +1,55 @@
+﻿@model  List<MyAcademy_MVC_CodeFirst.DTOs.TeamDtos.ResultTeamDto>
+
+@{
+    ViewBag.Title = "Ekip";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 p-4 md:p-8 space-y-6 font-display">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h2 class="text-3xl font-black text-gray-800 dark:text-white">Ekip Üyeleri</h2>
+            <p class="text-gray-500">Sistemde yer alan ekip kadrosunu buradan yönetebilirsiniz.</p>
+        </div>
+        <a href="/Admin/Team/CreateTeam"
+           class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-primary/20 no-underline">
+            <span class="material-symbols-outlined">person_add</span>
+            Yeni Üye Ekle
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        @foreach (var item in Model)
+        {
+            <div class="group bg-white dark:bg-[#151b2b] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+
+                <div class="p-6 text-center flex-1">
+                    <div class="relative inline-block mb-4">
+                        <img src="@item.ImageUrl"
+                             alt="@item.FullName"
+                             class="w-24 h-24 object-cover rounded-2xl border-4 border-gray-50 dark:border-gray-700 shadow-md mx-auto" />
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-white dark:border-[#151b2b] rounded-full"></div>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-1">@item.FullName</h3>
+                    <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">
+                        @item.Job
+                    </span>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800/50 p-4 flex items-center justify-center gap-3 border-t border-gray-100 dark:border-gray-800">
+                    <a href="/Admin/Team/UpdateTeam/@item.Id"
+                       class="flex-1 flex items-center justify-center gap-2 py-2 bg-white dark:bg-gray-700 hover:bg-primary hover:text-white text-gray-700 dark:text-gray-200 rounded-lg transition-colors border border-gray-200 dark:border-gray-600 no-underline text-sm font-semibold">
+                        <span class="material-symbols-outlined text-sm">edit</span>
+                        Düzenle
+                    </a>
+                    <a href="/Admin/Team/DeleteTeam/@item.Id"
+                       onclick="return confirm('Bu ekip üyesini silmek istediğinize emin misiniz?')"
+                       class="w-10 h-10 flex items-center justify-center bg-white dark:bg-gray-700 hover:bg-red-500 hover:text-white text-red-500 rounded-lg transition-colors border border-gray-200 dark:border-gray-600">
+                        <span class="material-symbols-outlined text-sm">delete</span>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

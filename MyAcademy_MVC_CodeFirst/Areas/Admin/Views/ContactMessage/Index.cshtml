@@ -1,0 +1,104 @@
+﻿@model List<MyAcademy_MVC_CodeFirst.DTOs.ContactMessageDtos.ResultContactMessageDto>
+
+@{
+    ViewBag.Title = "İletişim Mesajları";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 p-4 md:p-8 space-y-6 font-display">
+    <div>
+        <h2 class="text-3xl font-black">İletişim Mesajları</h2>
+        <p class="text-gray-500">Kullanıcılardan gelen mesajlar (salt okunur)</p>
+    </div>
+
+    <div class="bg-white dark:bg-[#151b2b] rounded-xl shadow border overflow-hidden">
+        <table class="w-full">
+            <thead class="bg-gray-50 dark:bg-gray-800/30">
+                <tr>
+                    <th class="p-4 text-xs font-bold uppercase">Gönderen</th>
+                    <th class="p-4 text-xs font-bold uppercase">Kategori</th>
+                    <th class="p-4 text-xs font-bold uppercase">Mesaj</th>
+                    <th class="p-4 text-xs font-bold uppercase text-center">Durum</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y">
+                @foreach (var item in Model)
+                {
+                    var shortMessage = item.MessageBody.Length > 80
+                        ? item.MessageBody.Substring(0, 80) + "..."
+                        : item.MessageBody;
+
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-semibold text-primary">
+                            @item.SenderEmail
+                        </td>
+                        <td class="p-4">
+                            <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700">
+                                @item.Category
+                            </span>
+                        </td>
+                        <td class="p-4 text-gray-600">
+                            @shortMessage
+                            @if (item.MessageBody.Length > 80)
+                            {
+                                <button class="ml-2 text-primary font-semibold text-xs hover:underline"
+                                        onclick="openMessageModal('@item.Id')">
+                                    Devamını Oku
+                                </button>
+                            }
+
+                            <!-- Hidden Full Message -->
+                            <div id="message-@item.Id" class="hidden">
+                                @Html.Raw(HttpUtility.HtmlEncode(item.MessageBody).Replace("\n", "<br/>"))
+                            </div>
+                        </td>
+                        <td class="p-4 text-center">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold
+                                @(item.IsReplied
+                                    ? "bg-green-100 text-green-700"
+                                    : "bg-red-100 text-red-700")">
+                                @(item.IsReplied ? "Yanıtlandı" : "Yanıt Bekliyor")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="messageModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl max-w-2xl w-full shadow-xl">
+        <div class="p-5 border-b flex justify-between items-center">
+            <h3 class="text-lg font-bold">Mesaj Detayı</h3>
+            <button onclick="closeMessageModal()" class="text-gray-400 hover:text-red-500">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div id="modalContent" class="p-6 text-gray-700 dark:text-gray-300 whitespace-pre-line">
+        </div>
+        <div class="p-4 border-t text-right">
+            <button onclick="closeMessageModal()"
+                    class="px-6 py-2 bg-primary text-white rounded-lg font-bold">
+                Kapat
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function openMessageModal(id) {
+            var content = document.getElementById("message-" + id).innerHTML;
+            document.getElementById("modalContent").innerHTML = content;
+            document.getElementById("messageModal").classList.remove("hidden");
+            document.getElementById("messageModal").classList.add("flex");
+        }
+
+        function closeMessageModal() {
+            document.getElementById("messageModal").classList.add("hidden");
+            document.getElementById("messageModal").classList.remove("flex");
+        }
+    </script>
+}

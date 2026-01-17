@@ -1,0 +1,57 @@
+﻿@model  MyAcademy_MVC_CodeFirst.DTOs.FaqDtos.CreateFaqDto
+
+@{
+    ViewBag.Title = "Yeni Soru Ekle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="p-8 max-w-3xl mx-auto font-display">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl border shadow-xl overflow-hidden">
+
+        <div class="p-6 border-b bg-green-50/50 dark:bg-green-900/10">
+            <h3 class="text-xl font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">add_circle</span>
+                Yeni SSS Ekle
+            </h3>
+        </div>
+
+        <div class="p-6">
+            @using (Html.BeginForm("CreateFaq", "Faq", FormMethod.Post))
+            {
+                <div class="space-y-5">
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Soru</label>
+                        @Html.TextBoxFor(x => x.Question, new
+                        {
+                            @class = "w-full px-4 py-2 rounded-lg border bg-gray-50",
+                            placeholder = "Soru başlığını yazınız"
+                        })
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Cevap</label>
+                        @Html.TextAreaFor(x => x.Answer, new
+                        {
+                            @class = "w-full px-4 py-2 rounded-lg border bg-gray-50 h-32 resize-none",
+                            placeholder = "Detaylı cevap"
+                        })
+                    </div>
+
+                    <div class="flex gap-3 pt-4">
+                        <button class="flex-1 bg-primary text-white font-bold py-3 rounded-xl">
+                            Kaydet
+                        </button>
+
+                        <a href="/Admin/Faq/Index"
+                           class="px-6 py-3 bg-gray-100 rounded-xl font-bold text-center no-underline">
+                            İptal
+                        </a>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
