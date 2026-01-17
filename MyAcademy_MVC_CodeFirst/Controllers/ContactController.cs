@@ -16,6 +16,9 @@ namespace MyAcademy_MVC_CodeFirst.Controllers
         private readonly HuggingFaceMailCategoryService huggingFaceMailCategoryService;
         private readonly CustomerLogService customerLogService;
 
+
+
+
         public ContactController()
         {
             context = new AppDbContext();
