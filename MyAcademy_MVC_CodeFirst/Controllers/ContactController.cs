@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MyAcademy_MVC_CodeFirst.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         private readonly AppDbContext context;

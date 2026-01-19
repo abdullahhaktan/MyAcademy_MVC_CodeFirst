@@ -5,6 +5,8 @@
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
+<div class=""></div>
+
 <div class="p-8 max-w-4xl mx-auto font-display">
     <div class="bg-white dark:bg-[#151b2b] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden">
         <div class="p-6 border-b border-gray-200 dark:border-gray-800 bg-green-50/50 dark:bg-green-900/10 flex justify-between items-center">
@@ -61,11 +63,24 @@
             }
         </div>
     </div>
+    <div id="loadingOverlay" style="
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(255,255,255,0.7);
+        z-index:9999;
+        align-items:center;
+        justify-content:center;
+    ">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+
 </div>
 
 @section Scripts{
     <script>
         $(document).ready(function () {
+
             $('#GeminiAi').on("click", function () {
 
                 var selectedInsuranceType = $("#InsuranceType").val();
@@ -79,15 +94,27 @@
                         selectedInsuranceType: selectedInsuranceType,
                         selectedPremiumAmount: selectedPremiumAmount
                     },
+
+                    beforeSend: function () {
+                        $("#loadingOverlay").css("display", "flex");
+                        $("#GeminiAi").prop("disabled", true);
+                    },
+
                     success: function (suggestion) {
+                        $("#Description1").val(suggestion).fadeOut(50).fadeIn(50);
+                    },
 
-                        $("#Description1").val(suggestion);
+                    complete: function () {
+                        $("#loadingOverlay").hide();
+                        $("#GeminiAi").prop("disabled", false);
+                    },
 
-                        $("#Description1").fadeOut(100).fadeIn(100);
-
+                    error: function () {
+                        alert("AI önerisi alınırken hata oluştu");
                     }
-                })
-            })
-        })
+
+                });
+            });
+        });
     </script>
 }
