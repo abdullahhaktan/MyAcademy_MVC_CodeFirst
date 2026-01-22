@@ -27,7 +27,6 @@ namespace MyAcademy_MVC_CodeFirst.Services
                 })
                 .ToList();
 
-            // Eksik günleri 0 ile doldur
             for (var date = startDate; date < endDate; date = date.AddDays(1))
             {
                 if (!dailyData.Any(d => d.Date == date))
@@ -53,9 +52,7 @@ namespace MyAcademy_MVC_CodeFirst.Services
                 return null;
 
             var mlContext = new MLContext(seed: 42);
-
             int windowSize = Math.Min(30, dailyData.Count / 2);
-
             var dataView = mlContext.Data.LoadFromEnumerable(dailyData);
 
             var pipeline = mlContext.Forecasting.ForecastBySsa(
@@ -64,22 +61,48 @@ namespace MyAcademy_MVC_CodeFirst.Services
                 windowSize: windowSize,
                 seriesLength: dailyData.Count,
                 trainSize: dailyData.Count,
-                horizon: 90, // 90 GÜN
+                horizon: 90,
                 confidenceLevel: 0.95f,
                 confidenceLowerBoundColumn: nameof(PolicySaleForecastResult.LowerBounds),
                 confidenceUpperBoundColumn: nameof(PolicySaleForecastResult.UpperBounds)
             );
 
             var model = pipeline.Fit(dataView);
+            var engine = model.CreateTimeSeriesEngine<PolicySaleTimeSeriesData, PolicySaleForecastResult>(mlContext);
+            // ... engine.Predict() satırından sonra
+            var prediction = engine.Predict();
 
-            var engine = model.CreateTimeSeriesEngine<
-                PolicySaleTimeSeriesData,
-                PolicySaleForecastResult>(mlContext);
+            // Negatif değerleri sıfıra yuvarla (Clamping)
+            for (int i = 0; i < prediction.ForecastedCounts.Length; i++)
+            {
+                if (prediction.ForecastedCounts[i] < 0) prediction.ForecastedCounts[i] = 0;
+                if (prediction.LowerBounds[i] < 0) prediction.LowerBounds[i] = 0;
+                if (prediction.UpperBounds[i] < 0) prediction.UpperBounds[i] = 0;
+            }
 
-            return engine.Predict();
+            return prediction;
         }
 
+        public Dictionary<string, PolicySaleForecastResult> ForecastNext3MonthsByCity(
+            List<ResultPolicySaleDto> sales,
+            int dayCount = 120)
+        {
+            // Customer null olmayanları filtrele
+            var validSales = sales.Where(s => s.Customer != null && !string.IsNullOrEmpty(s.City)).ToList();
 
+            var cities = validSales.Select(s => s.City).Distinct();
+            var result = new Dictionary<string, PolicySaleForecastResult>();
+
+            foreach (var city in cities)
+            {
+                var citySales = validSales.Where(s => s.City == city).ToList();
+                var forecast = ForecastNext3Months(citySales, dayCount);
+                if (forecast != null)
+                    result[city] = forecast;
+            }
+
+            return result;
+        }
 
     }
 }

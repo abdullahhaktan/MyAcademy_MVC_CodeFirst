@@ -15,184 +15,56 @@
 
     .hover-lift:hover {
         transform: translateY(-4px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
     }
 
-    /* Stat kartları için özel hover */
-    .stat-card {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
+    .stat-card { position: relative; overflow: hidden; transition: all 0.3s ease; }
     .stat-card::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
+        top:0; left:-100%; width:100%; height:100%;
         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
         transition: left 0.7s ease;
     }
+    .stat-card:hover::before { left:100%; }
 
-    .stat-card:hover::before {
-        left: 100%;
-    }
-
-    /* Progress bar animasyonu */
-    .progress-bar-animate {
-        transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    /* Tablo satır hover efekti */
-    .table-row-hover {
-        transition: all 0.2s ease;
-    }
-
-    .table-row-hover:hover {
-        background-color: rgba(59, 130, 246, 0.05) !important;
-        transform: scale(1.001);
-    }
-
-    /* Chip/badge hover efekti */
-    .status-chip {
-        transition: all 0.2s ease;
-    }
-
-    .status-chip:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    /* Chart container efektleri */
-    .chart-container {
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    /* Buton hover efekti geliştirme */
-    .btn-primary {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-primary::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 5px;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.5);
-        opacity: 0;
-        border-radius: 100%;
-        transform: scale(1, 1) translate(-50%);
-        transform-origin: 50% 50%;
-    }
-
-    .btn-primary:focus:not(:active)::after {
-        animation: ripple 1s ease-out;
-    }
-
+    .progress-bar-animate { transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .table-row-hover { transition: all 0.2s ease; }
+    .table-row-hover:hover { background-color: rgba(59, 130, 246, 0.05) !important; transform: scale(1.001); }
+    .status-chip { transition: all 0.2s ease; }
+    .status-chip:hover { transform: scale(1.05); box-shadow:0 4px 6px -1 rgba(0,0,0,0.1),0 2px 4px -1 rgba(0,0,0,0.06); }
+    .chart-container { position: relative; transition: all 0.3s ease; }
+    .btn-primary { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; }
+    .btn-primary::after { content: ''; position:absolute; top:50%; left:50%; width:5px;height:5px; background: rgba(255,255,255,0.5); opacity:0; border-radius:100%; transform: scale(1,1) translate(-50%); transform-origin:50% 50%; }
+    .btn-primary:focus:not(:active)::after { animation:ripple 1s ease-out; }
     @@keyframes ripple {
-        0% {
-            transform: scale(0, 0);
-            opacity: 0.5;
-        }
-        20% {
-            transform: scale(25, 25);
-            opacity: 0.3;
-        }
-        100% {
-            opacity: 0;
-            transform: scale(40, 40);
-        }
+        0% { transform: scale(0,0); opacity:0.5; }
+        20% { transform: scale(25,25); opacity:0.3; }
+        100% { opacity:0; transform: scale(40,40); }
     }
 
-    /* Fade in animasyonu */
-    .fade-in {
-        animation: fadeIn 0.6s ease-in-out;
-    }
+    .fade-in { animation: fadeIn 0.6s ease-in-out; }
+    @@keyframes fadeIn { from {opacity:0; transform: translateY(10px);} to {opacity:1; transform:translateY(0);} }
 
-    @@keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+    .grid-item { opacity:0; animation: slideUp 0.5s ease forwards; }
+    .grid-item:nth-child(1){animation-delay:0.1s;}
+    .grid-item:nth-child(2){animation-delay:0.2s;}
+    .grid-item:nth-child(3){animation-delay:0.3s;}
+    .grid-item:nth-child(4){animation-delay:0.4s;}
+    @@keyframes slideUp{from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
 
-    /* Grid item sıralı animasyon */
-    .grid-item {
-        opacity: 0;
-        animation: slideUp 0.5s ease forwards;
-    }
+    html { scroll-behavior:smooth; }
 
-    .grid-item:nth-child(1) { animation-delay: 0.1s; }
-    .grid-item:nth-child(2) { animation-delay: 0.2s; }
-    .grid-item:nth-child(3) { animation-delay: 0.3s; }
-    .grid-item:nth-child(4) { animation-delay: 0.4s; }
+    ::-webkit-scrollbar { width:8px; height:8px; }
+    ::-webkit-scrollbar-track { background:#f1f1f1; border-radius:4px; }
+    .dark ::-webkit-scrollbar-track { background:#2d3748; }
+    ::-webkit-scrollbar-thumb { background:#c1c1c1; border-radius:4px; }
+    .dark ::-webkit-scrollbar-thumb { background:#4a5568; }
+    ::-webkit-scrollbar-thumb:hover { background:#a1a1a1; }
+    .dark ::-webkit-scrollbar-thumb:hover { background:#718096; }
 
-    @@keyframes slideUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Smooth scroll için */
-    html {
-        scroll-behavior: smooth;
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-    }
-
-    .dark ::-webkit-scrollbar-track {
-        background: #2d3748;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-        border-radius: 4px;
-    }
-
-    .dark ::-webkit-scrollbar-thumb {
-        background: #4a5568;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #a1a1a1;
-    }
-
-    .dark ::-webkit-scrollbar-thumb:hover {
-        background: #718096;
-    }
-
-    /* Gradient border efekti */
-    .gradient-border {
-        position: relative;
-        border: 1px solid transparent;
-        background-clip: padding-box;
-    }
-
-    .gradient-border::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: -1;
-        margin: -1px;
-        border-radius: inherit;
-        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    }
+    .gradient-border { position:relative; border:1px solid transparent; background-clip: padding-box; }
+    .gradient-border::before { content:''; position:absolute; top:0; right:0; bottom:0; left:0; z-index:-1; margin:-1px; border-radius:inherit; background: linear-gradient(135deg, #3b82f6, #8b5cf6);}
 </style>
 
 <div class="max-w-[1200px] mx-auto flex flex-col gap-8 fade-in">
@@ -210,7 +82,7 @@
 
     <!-- Stats Widgets -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Stat 1 -->
+        <!-- Stat 1: Toplam Müşteri -->
         <div class="bg-white dark:bg-[#151b2b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4 stat-card hover-lift grid-item">
             <div class="flex justify-between items-start">
                 <div class="p-2.5 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-primary">
@@ -227,7 +99,7 @@
             </div>
         </div>
 
-        <!-- Stat 2 -->
+        <!-- Stat 2: Aktif Poliçeler -->
         <div class="bg-white dark:bg-[#151b2b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4 stat-card hover-lift grid-item">
             <div class="flex justify-between items-start">
                 <div class="p-2.5 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-indigo-600 dark:text-indigo-400">
@@ -240,7 +112,7 @@
             </div>
         </div>
 
-        <!-- Stat 3 -->
+        <!-- Stat 3: Bekleyen Mesajlar -->
         <div class="bg-white dark:bg-[#151b2b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4 stat-card hover-lift grid-item">
             <div class="flex justify-between items-start">
                 <div class="p-2.5 bg-orange-50 dark:bg-orange-900/20 rounded-xl text-orange-600 dark:text-orange-400">
@@ -253,7 +125,7 @@
             </div>
         </div>
 
-        <!-- Stat 4 -->
+        <!-- Stat 4: Aylık Prim -->
         <div class="bg-white dark:bg-[#151b2b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4 stat-card hover-lift grid-item">
             <div class="flex justify-between items-start">
                 <div class="p-2.5 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl text-emerald-600 dark:text-emerald-400">
@@ -262,16 +134,14 @@
             </div>
             <div>
                 <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Aylık Prim</p>
-                <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">
-                    @ViewBag.lastMonthPolicySaleSum ₺
-                </p>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">@ViewBag.lastMonthPolicySaleSum ₺</p>
             </div>
         </div>
     </div>
 
     <!-- Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Main Chart -->
+        <!-- Main Bar Chart (Son 6 aylık satış) -->
         <div class="lg:col-span-2 bg-white dark:bg-[#151b2b] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col hover-lift">
             <div class="flex items-center justify-between mb-6">
                 <div>
@@ -284,59 +154,55 @@
             </div>
         </div>
 
-        <!-- Distribution Chart -->
-        <div class="col-lg-6">
-            <div class="lg:col-span-1 bg-white dark:bg-[#151b2b] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-full hover-lift">
-                <div class="mb-6">
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Poliçe Dağılımı</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Kategoriye göre aktif poliçeler</p>
+        <!-- Distribution Chart (Kategori) -->
+        <div class="lg:col-span-1 bg-white dark:bg-[#151b2b] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-full hover-lift">
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Poliçe Dağılımı</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Kategoriye göre aktif poliçeler</p>
+            </div>
+            <div class="flex flex-col gap-6 flex-1 justify-center">
+                <!-- Progress bar itemleri: Araç, Hayat, Konut, Seyahat -->
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-medium text-slate-700 dark:text-slate-300">Araç Sigorta</span>
+                        <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalCarInsuranceSaleCountPercentage</span>
+                    </div>
+                    <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-primary rounded-full progress-bar-animate" style="width:@ViewBag.totalCarInsuranceSaleCountPercentage.ToString().Replace(',', '.')%"></div>
+                    </div>
                 </div>
-                <div class="flex flex-col gap-6 flex-1 justify-center">
-                    <!-- Item -->
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="font-medium text-slate-700 dark:text-slate-300">Araç Sigorta</span>
-                            <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalCarInsuranceSaleCountPercentage</span>
-                        </div>
-                        <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary rounded-full progress-bar-animate" style="width:@ViewBag.totalCarInsuranceSaleCountPercentage.ToString().Replace(',', '.')%"></div>
-                        </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-medium text-slate-700 dark:text-slate-300">Hayat Sigortası</span>
+                        <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalLifeInsuranceSalePercentage%</span>
                     </div>
-                    <!-- Item -->
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="font-medium text-slate-700 dark:text-slate-300">Hayat Sigortası</span>
-                            <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalLifeInsuranceSalePercentage%</span>
-                        </div>
-                        <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                            <div class="h-full bg-emerald-500 rounded-full progress-bar-animate" style="width: @ViewBag.totalLifeInsuranceSalePercentage.ToString().Replace(',', '.')%"></div>
-                        </div>
+                    <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-emerald-500 rounded-full progress-bar-animate" style="width: @ViewBag.totalLifeInsuranceSalePercentage.ToString().Replace(',', '.')%"></div>
                     </div>
-                    <!-- Item -->
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="font-medium text-slate-700 dark:text-slate-300">Konut &amp; DASK</span>
-                            <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalResidentalCountPercentage %</span>
-                        </div>
-                        <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                            <div class="h-full bg-emerald-500 rounded-full progress-bar-animate" style="width: @ViewBag.totalResidentalCountPercentage.ToString().Replace(',', '.')%"></div>
-                        </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-medium text-slate-700 dark:text-slate-300">Konut &amp; DASK</span>
+                        <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalResidentalCountPercentage %</span>
                     </div>
-                    <!-- Item -->
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="font-medium text-slate-700 dark:text-slate-300">Seyahat</span>
-                            <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalHealthInsuranceSaleCountPercentage %</span>
-                        </div>
-                        <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                            <div class="h-full bg-emerald-500 rounded-full progress-bar-animate" style="width: @ViewBag.totalHealthInsuranceSaleCountPercentage.ToString().Replace(',', '.')%"></div>
-                        </div>
+                    <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-emerald-500 rounded-full progress-bar-animate" style="width: @ViewBag.totalResidentalCountPercentage.ToString().Replace(',', '.')%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-medium text-slate-700 dark:text-slate-300">Seyahat</span>
+                        <span class="font-bold text-slate-900 dark:text-white">@ViewBag.totalHealthInsuranceSaleCountPercentage %</span>
+                    </div>
+                    <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-emerald-500 rounded-full progress-bar-animate" style="width: @ViewBag.totalHealthInsuranceSaleCountPercentage.ToString().Replace(',', '.')%"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 3 Aylık Tahmin Line Chart -->
     <div class="row mt-8">
         <div class="col-lg-12">
             <div class="card w-100 hover-lift">
@@ -350,8 +216,19 @@
         </div>
     </div>
 
+    <!-- Şehir Bazlı Chart -->
+    <div class="lg:col-span-1 bg-white dark:bg-[#151b2b] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-full hover-lift mt-6">
+        <div class="mb-6">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Şehir Bazlı Poliçe Satışları</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Her şehirdeki toplam poliçe sayısı</p>
+        </div>
+        <div class="flex-1 min-h-[300px] relative chart-container">
+            <canvas id="CityChart"></canvas>
+        </div>
+    </div>
+
     <!-- Recent Table -->
-    <div class="bg-white dark:bg-[#151b2b] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden hover-lift">
+    <div class="bg-white dark:bg-[#151b2b] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden hover-lift mt-6">
         <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Son Poliçeler</h3>
             <a class="text-primary text-sm font-semibold hover:underline hover:text-blue-700 transition-colors" href="/Admin/PolicySale/Index">Tümünü Gör</a>
@@ -394,22 +271,20 @@
 
 @section Scripts{
     <script>
-        // Sayfa yüklendiğinde animasyonları tetikle
+        // Sayfa yüklendiğinde progress bar animasyonu
         document.addEventListener('DOMContentLoaded', function() {
-            // Progress bar animasyonlarını başlat
             document.querySelectorAll('.progress-bar-animate').forEach(el => {
                 const width = el.style.width;
                 el.style.width = '0%';
-                setTimeout(() => {
-                    el.style.width = width;
-                }, 300);
+                setTimeout(() => { el.style.width = width; }, 300);
             });
         });
 
+        // 3 Aylık Tahmin Line Chart
         var predictLabels = @Html.Raw(Json.Encode(ViewBag.monthLabels));
         var ctxLine = document.getElementById('lineChart').getContext('2d');
 
-        var lineChart = new Chart(ctxLine, {
+        new Chart(ctxLine, {
             type: 'line',
             data: {
                 labels: predictLabels,
@@ -417,111 +292,109 @@
                     {
                         label: 'Önümüzdeki 3 ayın tahmini poliçe satış sayıları',
                         data: @Html.Raw(Json.Encode(ViewBag.lineChartDatas)),
-                        backgroundColor: '#13DEB9',
-                        fill: false,
-                        tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 6,
-                        pointHoverRadius: 8,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#13DEB9',
-                        pointBorderWidth: 2,
+                        borderColor:'#13DEB9',
+                        fill:false,
+                        tension:0.4,
+                        borderWidth:3,
+                        pointRadius:6,
+                        pointHoverRadius:8,
+                        pointBackgroundColor:'#fff',
+                        pointBorderColor:'#13DEB9',
+                        pointBorderWidth:2
                     },
                     {
                         label: 'Üst Sınır',
                         data: @Html.Raw(Json.Encode(ViewBag.upperBound)),
-                        borderColor: 'rgba(19, 222, 185, 0.2)',
-                        backgroundColor: 'rgba(19, 222, 185, 0.1)',
-                        fill: '+1',
-                        pointRadius: 0,
-                        borderWidth: 1,
+                        borderColor: 'rgba(19,222,185,0.2)',
+                        backgroundColor: 'rgba(19,222,185,0.1)',
+                        fill:'+1',
+                        pointRadius:0,
+                        borderWidth:1
                     },
                     {
                         label: 'Alt Sınır',
                         data: @Html.Raw(Json.Encode(ViewBag.lowerBound)),
-                        borderColor: 'rgba(19, 222, 185, 0.2)',
-                        fill: false,
-                        pointRadius: 0,
-                        borderWidth: 1,
+                        borderColor: 'rgba(19,222,185,0.2)',
+                        fill:false,
+                        pointRadius:0,
+                        borderWidth:1
                     }
                 ]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animations: {
-                    tension: {
-                        duration: 1000,
-                        easing: 'linear'
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            autoSkip: true,
-                            maxTicksLimit: 10
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(156, 163, 175, 0.1)',
-                            drawBorder: false
-                        }
-                    }
+            options:{
+                responsive:true,
+                maintainAspectRatio:false,
+                animations: { tension: { duration:1000, easing:'linear' } },
+                scales:{
+                    x:{ grid:{ display:false, drawBorder:false }, ticks:{ autoSkip:true, maxTicksLimit:10 } },
+                    y:{ beginAtZero:true, grid:{ color:'rgba(156,163,175,0.1)', drawBorder:false } }
                 }
             }
         });
 
+        // Son 6 aylık Bar Chart
         var policySalesData = @Html.Raw(Json.Encode(ViewBag.dailyCounts));
         var monthLabels = @Html.Raw(Json.Encode(ViewBag.last6MonthLabels));
         var ctxPolicy = document.getElementById('PolicyCountsChart').getContext('2d');
 
         new Chart(ctxPolicy, {
-            type: 'bar',
-            data: {
+            type:'bar',
+            data:{
                 labels: monthLabels,
-                datasets: [{
-                    label: 'Satış Sayısı',
+                datasets:[{
+                    label:'Satış Sayısı',
                     data: policySalesData,
-                    backgroundColor: '#3b82f6',
-                    borderRadius: 6,
-                    maxBarThickness: 50,
-                    hoverBackgroundColor: '#2563eb',
+                    backgroundColor:'#3b82f6',
+                    borderRadius:6,
+                    maxBarThickness:50,
+                    hoverBackgroundColor:'#2563eb'
                 }]
+            },
+            options:{
+                responsive:true,
+                maintainAspectRatio:false,
+                animations:{ backgroundColor:{ duration:2000 }, borderRadius:{ duration:1000 } },
+                plugins:{ legend:{ display:false } },
+                scales:{ y:{ beginAtZero:true, grid:{ color:'rgba(156,163,175,0.1)', drawBorder:false }, ticks:{ stepSize:1 } }, x:{ grid:{ display:false } } }
+            }
+        });
+
+        var next3Months = @Html.Raw(Json.Encode(ViewBag.Next3Months));
+        var cityForecasts = @Html.Raw(Json.Encode(ViewBag.CityForecasts));
+        var colorPalette = ['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6','#6366f1'];
+
+        var datasets = [];
+        Object.keys(cityForecasts).forEach(function(city, index){
+            datasets.push({
+                label: city,
+                data: cityForecasts[city],
+                borderColor: colorPalette[index % colorPalette.length],
+                backgroundColor: colorPalette[index % colorPalette.length],
+                fill: false,
+                tension: 0.4,
+                borderWidth: 3,
+                pointRadius: 5,
+                pointHoverRadius: 7
+            });
+        });
+
+        var ctxCity = document.getElementById('CityChart').getContext('2d');
+        new Chart(ctxCity, {
+            type: 'line',
+            data: {
+                labels: next3Months,
+                datasets: datasets
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                animations: {
-                    backgroundColor: {
-                        duration: 2000
-                    },
-                    borderRadius: {
-                        duration: 1000
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                },
+                plugins: { legend: { position: 'top' } },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(156, 163, 175, 0.1)',
-                            drawBorder: false
-                        },
-                        ticks: { stepSize: 1 }
-                    },
-                    x: {
-                        grid: { display: false }
-                    }
+                    y: { beginAtZero: true },
+                    x: { grid: { display: false } }
                 }
             }
         });
+
     </script>
 }

@@ -13,6 +13,8 @@ namespace MyAcademy_MVC_CodeFirst.DTOs.PolicySaleDtos
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
+        public string City { get; set; }
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

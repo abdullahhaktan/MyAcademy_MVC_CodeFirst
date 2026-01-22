@@ -17,7 +17,7 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var values = await context.PolicySales.ToListAsync();
+            var values = await context.PolicySales.Include(ps=>ps.Customer).ToListAsync();
             var policySales = MvcApplication.mapperInstance
                 .Map<List<ResultPolicySaleDto>>(values);
 
@@ -26,18 +26,16 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
             if (forecast == null)
                 return View();
 
+            // --- mevcut kodunuz ---
             var monthly = new Dictionary<string, (float sum, float low, float up)>();
-
             for (int i = 0; i < forecast.ForecastedCounts.Length; i++)
             {
                 var date = DateTime.Now.Date.AddDays(i + 1);
                 var key = date.ToString("yyyy-MM");
-
                 if (!monthly.ContainsKey(key))
                     monthly[key] = (0, 0, 0);
 
                 var current = monthly[key];
-
                 monthly[key] = (
                     current.sum + forecast.ForecastedCounts[i],
                     current.low + forecast.LowerBounds[i],
@@ -46,7 +44,6 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
             }
 
             var first3Months = monthly.OrderBy(x => x.Key).Take(3).ToList();
-
             ViewBag.monthLabels = first3Months.Select(x => x.Key).ToList();
             ViewBag.lineChartDatas = first3Months.Select(x => Math.Round(x.Value.sum)).ToList();
             ViewBag.lowerBound = first3Months
@@ -55,7 +52,7 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
                 .ToList();
             ViewBag.upperBound = first3Months.Select(x => Math.Round(x.Value.up)).ToList();
 
-
+            // --- Mevcut müşteri, poliçe, mesaj, satış kodları ---
             var totalCustomerCountNow = await context.Customers.CountAsync();
             var sixMonthsAgo = DateTime.Now.AddMonths(-6);
 
@@ -71,7 +68,6 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
 
             ViewBag.CustomerTrend = percentageChange.ToString("F1");
             ViewBag.totalCustomerCount = totalCustomerCountNow.ToString("N0");
-
             ViewBag.activePolicyCount = (await context.Policies.Where(p => p.IsActive).CountAsync()).ToString("N0");
             ViewBag.unansweredMessageCount = (await context.ContactMessages.Where(m => m.IsReplied == false).CountAsync()).ToString("N0");
 
@@ -83,7 +79,6 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
             ViewBag.lastMonthPolicySaleSum = lastMonthPolicySaleSum.ToString("N2");
 
             var totalPolicySaleCount = await context.PolicySales.CountAsync();
-
             var totalCarInsuranceSaleCount = await context.PolicySales
                 .Where(ps => ps.PolicyId == 7 || ps.PolicyId == 12)
                 .CountAsync();
@@ -126,10 +121,7 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
                 .Select(g => new { Date = g.Key.Value, Count = g.Count() })
                 .ToListAsync();
 
-            var dailyCounts = new Dictionary<int, int>
-            {
-                {0,0},{1,0},{2,0},{3,0},{4,0},{5,0}
-            };
+            var dailyCounts = new Dictionary<int, int> { { 0, 0 }, { 1, 0 }, { 2, 0 }, { 3, 0 }, { 4, 0 }, { 5, 0 } };
 
             for (int i = 0; i < 180; i++)
             {
@@ -146,7 +138,6 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
             }
 
             ViewBag.dailyCounts = dailyCounts.Values.ToList();
-
             ViewBag.last6MonthLabels = new List<string>
             {
                 DateTime.Now.AddMonths(-5).ToString("MMM"),
@@ -165,6 +156,40 @@ namespace MyAcademy_MVC_CodeFirst.Areas.Admin.Controllers
                 .ToListAsync();
 
             var lastFivePolicySales = MvcApplication.mapperInstance.Map<List<ResultPolicySaleDto>>(policySaleValues);
+
+            // --- ŞEHİR BAZLI 3 AYLIK TAHMİN ---
+            var cityForecasts = mlNetService.ForecastNext3MonthsByCity(policySales, 100);
+
+            var cityLabels = cityForecasts.Keys.ToList();
+            var cityDatas = new Dictionary<string, List<double>>();
+            var next3Months = new List<string>();
+
+            foreach (var city in cityLabels)
+            {
+                var forecastCity = cityForecasts[city];
+                var monthlyCity = new Dictionary<string, double>();
+
+                for (int i = 0; i < forecastCity.ForecastedCounts.Length; i++)
+                {
+                    var date = DateTime.Now.Date.AddDays(i + 1);
+                    var key = date.ToString("yyyy-MM");
+                    if (!monthlyCity.ContainsKey(key))
+                        monthlyCity[key] = 0;
+                    monthlyCity[key] += forecastCity.ForecastedCounts[i];
+                }
+
+                var first3 = monthlyCity.OrderBy(x => x.Key).Take(3).Select(x => Math.Round(x.Value)).ToList();
+
+                cityDatas[city] = first3;
+
+                if (next3Months.Count == 0)
+                    next3Months = monthlyCity.OrderBy(x => x.Key).Take(3).Select(x => x.Key).ToList();
+            }
+
+            ViewBag.CityLabels = cityLabels;
+            ViewBag.CityForecasts = cityDatas;
+            ViewBag.Next3Months = next3Months;
+
 
             return View(lastFivePolicySales);
         }

@@ -431,6 +431,10 @@
     <Compile Include="Migrations\202601171246056_ContactMessageTableUpdated.Designer.cs">
       <DependentUpon>202601171246056_ContactMessageTableUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601200717111_migCityColumnAddedToPolicySale.cs" />
+    <Compile Include="Migrations\202601200717111_migCityColumnAddedToPolicySale.Designer.cs">
+      <DependentUpon>202601200717111_migCityColumnAddedToPolicySale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PolicySaleForecastResult.cs" />
     <Compile Include="Models\PolicySaleTimeSeriesData.cs" />
@@ -663,7 +667,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Views\Shared\Components\_UiLayoutHeadComponent.cshtml" />
     <Content Include="Views\Default\HeadPartial.cshtml" />
     <Content Include="Views\Default\SpinnerPartial.cshtml" />
     <Content Include="Views\Default\TopbarPartial.cshtml" />
@@ -784,6 +787,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202601171246056_ContactMessageTableUpdated.resx">
       <DependentUpon>202601171246056_ContactMessageTableUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601200717111_migCityColumnAddedToPolicySale.resx">
+      <DependentUpon>202601200717111_migCityColumnAddedToPolicySale.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
