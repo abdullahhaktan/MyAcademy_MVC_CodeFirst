@@ -13,38 +13,46 @@ namespace MyAcademy_MVC_CodeFirst.Services
 
         public OpenAiService()
         {
+            // Load OpenAI API key from application configuration
             apiKey = ConfigurationManager.AppSettings["OpenAiApiKey"];
         }
 
+        // Generic method to send prompt to OpenAI and get response
         public async Task<string> AskAsync(string prompt)
         {
             using (var client = new HttpClient())
             {
+                // Set authorization header with API key
                 client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", apiKey);
 
+                // Prepare request body for OpenAI Chat API
                 var requestBody = new
                 {
-                    model = "gpt-4o-mini",
+                    model = "gpt-4o-mini", // Using smaller, cost-effective model
                     messages = new[]
                     {
                         new { role = "user", content = prompt }
                     }
                 };
 
+                // Serialize request to JSON
                 var json = JsonConvert.SerializeObject(requestBody);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+                // Send POST request to OpenAI API
                 var response = await client.PostAsync(
                     "https://api.openai.com/v1/chat/completions",
                     content
                 );
 
+                // Handle unsuccessful responses
                 if (!response.IsSuccessStatusCode)
                 {
-                    return "OpenAI isteği başarısız.";
+                    return "OpenAI isteği başarısız."; // "OpenAI request failed"
                 }
 
+                // Parse and extract response content
                 var responseString = await response.Content.ReadAsStringAsync();
                 dynamic result = JsonConvert.DeserializeObject(responseString);
 
@@ -52,7 +60,7 @@ namespace MyAcademy_MVC_CodeFirst.Services
             }
         }
 
-
+        // Detect language of given text using OpenAI
         public async Task<string> DetectLanguageAsync(string message)
         {
             var prompt = $@"
@@ -65,10 +73,10 @@ namespace MyAcademy_MVC_CodeFirst.Services
 
             var result = await AskAsync(prompt);
 
-            return result.Trim();
-
+            return result.Trim(); // Clean whitespace
         }
 
+        // Generate automated reply for customer messages
         public async Task<string> GenerateAutoReplyAsync(string userMessage, string language, string senderFullName)
         {
             var prompt = $@"
@@ -112,10 +120,9 @@ namespace MyAcademy_MVC_CodeFirst.Services
                 {userMessage}
                 ";
 
-
+            // Get AI-generated reply
             var reply = await AskAsync(prompt);
             return reply.Trim();
         }
-
     }
 }
